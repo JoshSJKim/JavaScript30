@@ -44,18 +44,26 @@
 <button></button>
 <script>
   const divs = document.querySelectorAll('div');
+  const button = document.querySelector('button');
 
   function logText(e) {
     console.log(this.classList.value);
-    e.stopPropagation(); // stop bubbling
+    // e.stopPropagation(); // stop bubbling
     // console.log(this)
   }
 
 
   divs.forEach(div => div.addEventListener('click', logText, {
-    capture: true // run the function on the way down
+    capture: false, // run the function on the way down
                   // capture is 'false' by default
+    once: true // Run function only ONCE. Same as removing the function)
   }));
+
+  button.addEventListener('click', () => {
+    console.log('Click!!!');
+  }, {
+    once: true
+  })
 </script>
 </body>
 </html>
